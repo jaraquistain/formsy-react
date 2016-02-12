@@ -80,7 +80,7 @@ Formsy.Form = React.createClass({
   // Update model, submit to url prop and send the model
   submit: function (event) {
 
-    event && event.preventDefault();
+    event && event.preventDefault() && event.stopPropagation();
 
     // Trigger form as not pristine.
     // If any inputs have not been touched yet this will make them dirty
@@ -91,6 +91,7 @@ Formsy.Form = React.createClass({
     this.props.onSubmit(model, this.resetModel, this.updateInputsWithError);
     this.state.isValid ? this.props.onValidSubmit(model, this.resetModel, this.updateInputsWithError) : this.props.onInvalidSubmit(model, this.resetModel, this.updateInputsWithError);
     if (window.console) { window.console.log("about to return false"); }
+
     return false;
   },
 
