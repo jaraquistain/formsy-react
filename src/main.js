@@ -90,7 +90,8 @@ Formsy.Form = React.createClass({
     var model = this.mapModel();
     this.props.onSubmit(model, this.resetModel, this.updateInputsWithError);
     this.state.isValid ? this.props.onValidSubmit(model, this.resetModel, this.updateInputsWithError) : this.props.onInvalidSubmit(model, this.resetModel, this.updateInputsWithError);
-
+    if (window.console) { window.console.log("about to return false"); }
+    return false;
   },
 
   mapModel: function () {
@@ -98,7 +99,7 @@ Formsy.Form = React.createClass({
       return this.props.mapping(this.model)
     } else {
       return Object.keys(this.model).reduce(function (mappedModel, key) {
-        
+
         var keyArray = key.split('.');
         while (keyArray.length) {
           var currentKey = keyArray.shift();
